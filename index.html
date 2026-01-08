@@ -18,11 +18,11 @@
 
   .form-container {
     background: #ffffff;
-    padding: 35px 40px;
+    padding: 35px 35px;
     border-radius: 20px;
     box-shadow: 0 15px 40px rgba(0,0,0,0.15);
     width: 100%;
-    max-width: 500px;
+    max-width: 480px;
     transition: all 0.3s;
   }
 
@@ -67,7 +67,7 @@
 
   .form-field input,
   .form-field select {
-    padding: 16px 18px;
+    padding: 16px 16px;
     border: 1px solid #cfd7e6;
     border-radius: 12px;
     font-size: 17px;
@@ -75,7 +75,9 @@
     outline: none;
     transition: all 0.2s;
     width: 100%;
+    box-sizing: border-box;
   }
+
 
   .form-field input:focus,
   .form-field select:focus {
@@ -91,6 +93,7 @@
     background-size: 18px;
     padding-right: 40px;
   }
+  
 
   button {
     width: 100%;
@@ -110,7 +113,7 @@
     background: linear-gradient(135deg, #7746ff, #5c3ac7);
     box-shadow: 0 12px 25px rgba(92,58,199,0.35);
   }
-
+  
   /* Адаптивность */
   @media (max-width: 550px) {
     .form-container {
