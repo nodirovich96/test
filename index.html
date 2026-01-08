@@ -39,6 +39,14 @@
     border-radius: 8px;
     font-size: 16px;
   }
+  .form-field select {
+    padding: 10px;
+    border: 1px solid #d1d1e9;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #fff;
+    appearance: none;
+  }
   button {
     width: 100%;
     padding: 12px;
@@ -65,18 +73,18 @@
       <input type="text" id="field1" name="field1" placeholder="Введите значение">
     </div>
     <div class="form-field">
-  <label for="field2">Airport</label>
-  <select id="field2" name="field2">
-    <option value="Airport Uzbekistan">Tashkent</option>
-    <option value="Airport America">Samarkand</option>
-  </select>
-</div>
+      <label for="field2">Airport</label>
+      <select id="field2" name="field2">
+        <option value="Airport Uzbekistan">Tashkent</option>
+        <option value="Airport America">Samarkand</option>
+      </select>
+    </div>
     <div class="form-field">
-    <label for="field3">Company receiver</label>
+      <label for="field3">Company receiver</label>
       <select id="field3" name="field3">
-      <option value="Airport Uzbekistan">CENTRUM AIR</option>
-    <option value="Airport America">MY FREIGHTER</option>
-  </select>
+        <option value="CENTRUM AIR">CENTRUM AIR</option>
+        <option value="MY FREIGHTER">MY FREIGHTER</option>
+      </select>
     </div>
     <div class="form-field">
       <label for="field4">Type of aircraft</label>
@@ -112,44 +120,4 @@
     </div>
     <div class="form-field">
       <label for="field12">Kg</label>
-      <input type="text" id="field12" name="field12" placeholder="Введите значение">
-    </div>
-    <div class="form-field">
-      <label for="field13">Temperature</label>
-      <input type="text" id="field13" name="field13" placeholder="Введите значение">
-    </div>
-    <div class="form-field">
-      <label for="field14">Density</label>
-      <input type="text" id="field14" name="field14" placeholder="Введите значение">
-    </div>
-    <div class="form-field">
-      <label for="field15">Coupon number</label>
-      <input type="text" id="field15" name="field15" placeholder="Введите значение">
-    </div>
-    <div class="form-field">
-      <label for="field16">Refueling trans number</label>
-      <input type="text" id="field16" name="field16" placeholder="Введите значение">
-    </div>
-    <div class="form-field">
-      <label for="field17">Receiver</label>
-      <input type="text" id="field17" name="field17" placeholder="Введите значение">
-    </div>
-    <div class="form-field">
-      <label for="field18">Filler</label>
-      <input type="text" id="field18" name="field18" placeholder="Введите значение">
-    </div>
-    <button type="submit">Отправить</button>
-  </form>
-</div>
-
-<script>
-document.getElementById('dynamicForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  const formData = Object.fromEntries(new FormData(this).entries());
-  console.log(formData); // тут можно отправить на API
-  alert('Данные отправлены!\n' + JSON.stringify(formData, null, 2));
-});
-</script>
-
-</body>
-</html>
+      <input type="text" id="field1
