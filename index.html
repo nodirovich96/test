@@ -121,3 +121,44 @@
     <div class="form-field">
       <label for="field12">Kg</label>
       <input type="text" id="field1
+    </div>
+    <div class="form-field">
+      <label for="field13">Temperature</label>
+      <input type="text" id="field13" name="field13" placeholder="Введите значение">
+    </div>
+    <div class="form-field">
+      <label for="field14">Density</label>
+      <input type="text" id="field14" name="field14" placeholder="Введите значение">
+    </div>
+    <div class="form-field">
+      <label for="field15">Coupon number</label>
+      <input type="text" id="field15" name="field15" placeholder="Введите значение">
+    </div>
+    <div class="form-field">
+      <label for="field16">Refueling trans number</label>
+      <input type="text" id="field16" name="field16" placeholder="Введите значение">
+    </div>
+    <div class="form-field">
+      <label for="field17">Receiver</label>
+      <input type="text" id="field17" name="field17" placeholder="Введите значение">
+    </div>
+    <div class="form-field">
+      <label for="field18">Filler</label>
+      <input type="text" id="field18" name="field18" placeholder="Введите значение">
+    </div>
+    <button type="submit">Отправить</button>
+  </form>
+</div>
+
+<script>
+document.getElementById('dynamicForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const formData = Object.fromEntries(new FormData(this).entries());
+  console.log(formData); // тут можно отправить на API
+  alert('Данные отправлены!\n' + JSON.stringify(formData, null, 2));
+});
+</script>
+
+</body>
+</html>
+
