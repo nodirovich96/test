@@ -13,20 +13,21 @@
   <p id="status">Загрузка...</p>
   <pre id="rawdata"></pre>
 
-  <script>
-    // Проверка Telegram WebApp
-    console.log("window.Telegram:", window.Telegram);
-    console.log("window.Telegram.WebApp:", window.Telegram?.WebApp);
+  <!-- Подключаем официальный скрипт Telegram WebApp -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
+  <script>
+    // Проверка, есть ли объект Telegram WebApp
     const tg = window.Telegram?.WebApp;
 
     if (!tg) {
       document.getElementById("status").innerText = "❌ Не Telegram WebApp";
       document.getElementById("rawdata").innerText = "Откройте через кнопку бота на мобильном Telegram";
+      console.log("window.Telegram:", window.Telegram);
+      console.log("window.Telegram.WebApp:", tg);
     } else {
-      tg.ready(); // обязательно вызываем для Mini App
+      tg.ready(); // Обязательно для Mini App
 
-      // Raw initData и распарсенные данные
       const initDataRaw = tg.initData || null;
       const initDataUnsafe = tg.initDataUnsafe || {};
 
