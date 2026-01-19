@@ -1,11 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Telegram Mini App</title>
+</head>
 <body>
+
 <h1>Telegram test</h1>
+<p id="status">Загрузка…</p>
+<p id="userid"></p>
+
 <script>
-  console.log(window.Telegram);
-  console.log(window.Telegram?.WebApp);
-  console.log(window.Telegram?.WebApp?.initDataUnsafe);
+  // Проверяем, что мы внутри Telegram
+  if (!window.Telegram || !window.Telegram.WebApp) {
+    document.getElementById("status").innerText =
+      "❌ Открыто не из Telegram";
+  } else {
+    const tg = window.Telegram.WebApp;
+    tg.ready(); // ОБЯЗАТЕЛЬНО
+
+    const user = tg.initDataUnsafe?.user;
+
+    if (!user) {
+      document.getElementById("status").innerText =
+        "❌ user не передан";
+    } else {
+      document.getElementById("status").innerText =
+        "✅ Telegram Mini App";
+      document.getElementById("userid").innerText =
+        "User ID: " + user.id;
+    }
+  }
 </script>
+
 </body>
 </html>
