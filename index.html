@@ -2,39 +2,29 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Telegram Mini App Test</title>
+  <title>Telegram Mini App - Raw InitData</title>
   <style>
-    body { font-family: sans-serif; text-align: center; margin-top: 50px; }
-    p { font-size: 18px; }
+    body { font-family: sans-serif; text-align: center; margin-top: 30px; }
+    pre { text-align: left; display: inline-block; background: #f0f0f0; padding: 15px; border-radius: 8px; max-width: 90%; overflow-x: auto; }
   </style>
 </head>
 <body>
-  <h1>Telegram Mini App Test</h1>
+  <h1>Telegram Mini App - Raw InitData</h1>
   <p id="status">Загрузка...</p>
-  <p id="userid"></p>
+  <pre id="rawdata"></pre>
 
-  <script>
-    // Проверяем, есть ли объект Telegram
-    console.log("window.Telegram:", window.Telegram);
-    console.log("window.Telegram.WebApp:", window.Telegram?.WebApp);
-    console.log("initDataUnsafe:", window.Telegram?.WebApp?.initDataUnsafe);
+  <script type="module">
+    import { retrieveRawInitData } from 'https://cdn.jsdelivr.net/npm/@tma.js/sdk/dist/tma.min.js'
 
-    if (!window.Telegram || !window.Telegram.WebApp) {
-      document.getElementById("status").innerText = "❌ Открыто не из Telegram";
-    } else {
-      const tg = window.Telegram.WebApp;
-      tg.ready(); // Обязательно для Mini App
+    // Получаем сырые данные Telegram Mini App
+    const initDataRaw = retrieveRawInitData();
 
-      const user = tg.initDataUnsafe?.user;
+    // Выводим в консоль
+    console.log("Raw initData:", initDataRaw);
 
-      if (user?.id) {
-        document.getElementById("status").innerText = "✅ Telegram Mini App открыт";
-        document.getElementById("userid").innerText = "User ID: " + user.id;
-      } else {
-        document.getElementById("status").innerText = "❌ user не передан";
-        document.getElementById("userid").innerText = "Откройте через кнопку бота на мобильном Telegram";
-      }
-    }
+    // Также выводим на страницу
+    document.getElementById("status").innerText = initDataRaw ? "✅ Telegram Mini App открыт" : "❌ Не из Telegram";
+    document.getElementById("rawdata").innerText = initDataRaw || "Откройте через кнопку бота на мобильном Telegram";
   </script>
 </body>
 </html>
