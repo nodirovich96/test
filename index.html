@@ -1,32 +1,14 @@
-// App.jsx
-import React, { useEffect, useState } from "react";
-import { retrieveLaunchParams } from "@tma.js/sdk";
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Telegram Mini App</title>
+</head>
+<body>
+  <h1>Telegram Mini App Test</h1>
+  <p id="status">Загрузка...</p>
+  <p id="userid"></p>
 
-export default function App() {
-  const [userId, setUserId] = useState(null);
-  const [status, setStatus] = useState("Загрузка...");
-
-  useEffect(() => {
-    const { tgWebAppData: initData } = retrieveLaunchParams();
-
-    if (initData?.user?.id) {
-      setUserId(initData.user.id);
-      setStatus("✅ Telegram Mini App открыт");
-    } else {
-      setStatus("❌ Открыто не из Telegram");
-    }
-  }, []);
-
-  return (
-    <div style={{ fontFamily: "sans-serif", textAlign: "center", marginTop: "50px" }}>
-      <h1>Telegram Mini App Test</h1>
-      <p>{status}</p>
-      {userId && <p>User ID: {userId}</p>}
-      {!userId && (
-        <p>
-          Откройте это приложение через кнопку бота в мобильном Telegram.
-        </p>
-      )}
-    </div>
-  );
-}
+  <script src="app.js"></script>
+</body>
+</html>
