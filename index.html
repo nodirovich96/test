@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Telegram Mini App Test</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 30px; }
+    pre { text-align: left; display: inline-block; background: #f0f0f0; padding: 15px; border-radius: 8px; max-width: 90%; overflow-x: auto; }
+  </style>
 </head>
 <body>
   <h1>Telegram Mini App Test</h1>
@@ -10,20 +14,30 @@
   <pre id="rawdata"></pre>
 
   <script>
-    // Код для получения initData и initDataUnsafe
+    // Проверка Telegram WebApp
+    console.log("window.Telegram:", window.Telegram);
+    console.log("window.Telegram.WebApp:", window.Telegram?.WebApp);
+
     const tg = window.Telegram?.WebApp;
 
     if (!tg) {
-      console.log("❌ Не Telegram WebApp");
       document.getElementById("status").innerText = "❌ Не Telegram WebApp";
       document.getElementById("rawdata").innerText = "Откройте через кнопку бота на мобильном Telegram";
     } else {
       tg.ready(); // обязательно вызываем для Mini App
-      console.log("Raw initData:", tg.initData); // строка с данными
-      console.log("Parsed initDataUnsafe:", tg.initDataUnsafe); // объект с user, chat и т.д.
+
+      // Raw initData и распарсенные данные
+      const initDataRaw = tg.initData || null;
+      const initDataUnsafe = tg.initDataUnsafe || {};
 
       document.getElementById("status").innerText = "✅ Telegram Mini App открыт";
-      document.getElementById("rawdata").innerText = JSON.stringify(tg.initDataUnsafe, null, 2);
+      document.getElementById("rawdata").innerText = JSON.stringify({
+        raw: initDataRaw,
+        parsed: initDataUnsafe
+      }, null, 2);
+
+      console.log("Raw initData:", initDataRaw);
+      console.log("Parsed initDataUnsafe:", initDataUnsafe);
     }
   </script>
 </body>
