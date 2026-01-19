@@ -13,18 +13,22 @@
   <p id="status">Загрузка...</p>
   <pre id="rawdata"></pre>
 
-  <script type="module">
-    import { retrieveRawInitData } from '@tma.js/sdk'
+  <script>
+    const tg = window.Telegram?.WebApp;
 
-    // Получаем сырые данные Telegram Mini App
-    const initDataRaw = retrieveRawInitData();
+    if (!tg) {
+      document.getElementById("status").innerText = "❌ Не из Telegram";
+      document.getElementById("rawdata").innerText = "Откройте через кнопку бота на мобильном Telegram";
+    } else {
+      tg.ready();
+      const initDataRaw = tg.initData || null;
 
-    // Выводим в консоль
-    console.log("Raw initData:", initDataRaw);
-
-    // Также выводим на страницу
-    document.getElementById("status").innerText = initDataRaw ? "✅ Telegram Mini App открыт" : "❌ Не из Telegram";
-    document.getElementById("rawdata").innerText = initDataRaw || "Откройте через кнопку бота на мобильном Telegram";
+      document.getElementById("status").innerText = initDataRaw ? "✅ Telegram Mini App открыт" : "❌ Данных нет";
+      document.getElementById("rawdata").innerText = initDataRaw || "Нет данных";
+      
+      console.log("Raw initData:", initDataRaw);
+      console.log("Parsed initDataUnsafe:", tg.initDataUnsafe);
+    }
   </script>
 </body>
 </html>
