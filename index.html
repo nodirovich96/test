@@ -2,44 +2,15 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Telegram Mini App Test</title>
-  <style>
-    body { font-family: sans-serif; text-align: center; margin-top: 30px; }
-    pre { text-align: left; display: inline-block; background: #f0f0f0; padding: 15px; border-radius: 8px; max-width: 90%; overflow-x: auto; }
-  </style>
+  <title>Загрузка фото</title>
 </head>
 <body>
-  <h1>Telegram Mini App Test</h1>
-  <p id="status">Загрузка...</p>
-  <pre id="rawdata"></pre>
+  <h2>Загрузить фотографию</h2>
 
-  <!-- Подключаем официальный скрипт Telegram WebApp -->
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-  <script>
-    // Проверка, есть ли объект Telegram WebApp
-    const tg = window.Telegram?.WebApp;
-
-    if (!tg) {
-      document.getElementById("status").innerText = "❌ Не Telegram WebApp";
-      document.getElementById("rawdata").innerText = "Откройте через кнопку бота на мобильном Telegram";
-      console.log("window.Telegram:", window.Telegram);
-      console.log("window.Telegram.WebApp:", tg);
-    } else {
-      tg.ready(); // Обязательно для Mini App
-
-      const initDataRaw = tg.initData || null;
-      const initDataUnsafe = tg.initDataUnsafe || {};
-
-      document.getElementById("status").innerText = "✅ Telegram Mini App открыт";
-      document.getElementById("rawdata").innerText = JSON.stringify({
-        raw: initDataRaw,
-        parsed: initDataUnsafe
-      }, null, 2);
-
-      console.log("Raw initData:", initDataRaw);
-      console.log("Parsed initDataUnsafe:", initDataUnsafe);
-    }
-  </script>
+  <form action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="photo" accept="image/*" required />
+    <br><br>
+    <button type="submit">Загрузить</button>
+  </form>
 </body>
 </html>
